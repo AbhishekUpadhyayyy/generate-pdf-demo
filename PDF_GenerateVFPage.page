@@ -1,0 +1,64 @@
+<apex:page  showHeader="false" sidebar="false" controller="PDF_GenerateVFController" >
+
+<apex:includeLightning />
+	<body>
+        <apex:form>
+            <apex:actionFunction action="{!printPdf}" name="PrintPage" reRender="false"/>	
+            <apex:pageBlock id="pb">
+                <apex:commandButton onclick="PrintPage();return false;"
+                                    id="saveButton"
+                                    value="Save"
+                />
+            </apex:pageBlock>
+            <div>
+                This is my VisualForce Only Content
+            </div>
+            <div id="lightning"/> 
+         
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script> 
+                $(document).ready(function () {
+                    var screenHeight = screen.height ; 
+                        var screenWidth = screen.width ; 
+                        var height = 800 ; 
+                        // var width = 1300 ; 
+                        var width = 700 ; 
+
+                    if(screenHeight > 768 && screenWidth > 1366 ){
+                        
+                            height = 800; 
+                            // width = 1400;
+                            var width = 700 ;
+                    }
+                    else {
+                        
+                            height = 800; 
+                            // width = 1200;
+                            var width = 700 ;
+                    }          
+                    });
+            </script>
+            <script>
+                $Lightning.use("c:GeneratePdfApp", function() {
+                    $Lightning.createComponent("c:pdfGeneratePoc", 
+                            { },
+                            "lightning",
+                    );
+                }); 
+            </script>
+            <!-- <style type="text/css" media="print">
+                @page {size:  A4 landscape}
+            body {
+                    width: 100%;
+                    height: auto;
+                    margin: 50px auto;
+            }
+            /*@media  print {
+                    thead { 
+                    display: table-row-group 
+                    }
+            }*/
+            </style> -->
+        </apex:form>
+    </body>
+</apex:page>

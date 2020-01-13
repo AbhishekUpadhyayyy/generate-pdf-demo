@@ -1,0 +1,33 @@
+<template>
+    <div class="print-area-css">
+        <lightning-card title="All Accounts">
+            <ul>
+                <!-- Hide if data is not there -->
+                <template if:true={isShowRadioGroup}>
+                        <lightning-radio-group name="radioGroup"
+                                            label="Select an account to proceed"
+                                            options={options}
+                                            value={selectedAccountId}
+                                            type="radio"
+                                            onchange={handleChange}
+                                            class="radio-group-div-css"
+                                            required>
+                        </lightning-radio-group> 
+                </template>
+            </ul>
+            <!-- To Generate Pdf -->
+            <div slot="actions">
+                <lightning-button-icon icon-name="utility:print" 
+                                    onclick={generatePdf} 
+                                    disabled={isShowPDFButton}>
+                </lightning-button-icon>
+            </div>
+        </lightning-card> 
+        <lightning-layout>
+            <lightning-layout-item size="12" padding="around-small">
+                <!-- Container where chart will render -->
+                <div id="chartContainer"  class="classText"  lwc:dom="manual"></div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>  
